@@ -1,0 +1,58 @@
+
+body{
+    background-color: #0000002d;
+}
+
+
+.piano{
+    height: 100vh;
+}
+.whiteKeys{
+    width: 50px;
+    height: 200px;
+    background-color: white ;
+}
+.blackKeys{
+    position: absolute;
+    width: 30px;
+    height: 150px;
+    background-color: black ;
+}
+
+/* Black Keys Positioning */
+#bKey1{
+    left: 6%;
+}
+#bKey2{
+    left: 15.5%;
+}
+#bKey3{
+    left: 33.5%;
+}
+#bKey4{
+    right: 52.5%;
+}
+#bKey5{
+    right: 43%;
+}
+#bKey6{
+    right: 24.5%;
+}
+#bKey7{
+    right: 15.5%;
+}
+
+/* Making is look like Keys */
+.whiteKeys,.blackKeys{
+    cursor: pointer;
+    transition: all 1s ease;
+}
+
+.active{
+    /* transform: translateY(6px); */
+    box-shadow: 0 8px 15px 0 #c71212;
+}
+
+
+
+
