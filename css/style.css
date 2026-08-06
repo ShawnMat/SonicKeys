@@ -1,45 +1,43 @@
 
+
+/* *{
+    outline: 1px solid red !important;
+} */
+
 body{
-    background-color: #0000002d;
+    background-color: #000000;
 }
 
 
-.piano{
+.playArea{
     height: 100vh;
 }
-.whiteKeys{
-    width: 50px;
-    height: 200px;
-    background-color: white ;
-}
-.blackKeys{
-    position: absolute;
-    width: 30px;
-    height: 150px;
-    background-color: black ;
+.piano{
+    /* width: 90%; */
+    height: 85%;
 }
 
 /* Black Keys Positioning */
 #bKey1{
-    left: 6%;
+    left: 7.6%;
 }
 #bKey2{
-    left: 15.5%;
+    left: 16.6%;
 }
 #bKey3{
-    left: 33.5%;
+    left: 34.3%;
 }
 #bKey4{
-    right: 52.5%;
+    right: 52.1%;
 }
 #bKey5{
-    right: 43%;
+    right: 43.2%;
 }
 #bKey6{
-    right: 24.5%;
+    right: 25.5%;
 }
 #bKey7{
-    right: 15.5%;
+    right: 16.2%;
 }
 
 /* Making is look like Keys */
@@ -49,10 +47,60 @@ body{
 }
 
 .active{
-    /* transform: translateY(6px); */
-    box-shadow: 0 8px 15px 0 #c71212;
+    transform: translateY(2px);
+    box-shadow: 10px 15px 15px 0 #c71212;
+}
+.whiteKeysContainer{
+    width: 100%;
+    display: flex;
 }
 
+.whiteKeys{
+    flex: 1;          /* Every white key gets equal width */
+    height: 300px;
+    background: white;
+    border: 1px solid #333;
+    position: relative;
+}
+
+.whiteKeys .keyLabel{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    user-select: none;
+}
+
+
+.blackKeys{
+    position: absolute;
+    /* width: 40px;
+    height: 150px; */
+    width: clamp(10px, 4vw, 70px);
+    height: 200px;
+    background-color: black ;
+    z-index: 1;
+}
+
+.blackKeys .keyLabel{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    user-select: none;
+}
+
+.pianoNotes{
+    min-width: 90px ;
+    height: auto;
+    padding: 3px;
+}
 
 
 
