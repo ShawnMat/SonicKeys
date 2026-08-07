@@ -3,6 +3,7 @@
 // --------------------
 
 let currentOctave = 4;
+let currentPointerKey = null;
 let audioStarted = false;
 
 const activeNotes = new Set();
@@ -197,20 +198,59 @@ pianoKeys.forEach((key) => {
         await startAudio();
 
         activateKey(key);
+        currentPointerKey = key;
 
     });
 
     key.addEventListener("pointerup", () => {
 
         deactivateKey(key);
+        currentPointerKey = null;
 
     });
 
-    key.addEventListener("pointerleave", () => {
+    // key.addEventListener("pointerleave", () => {
 
-        deactivateKey(key);
+    //     deactivateKey(key);
 
-    });
+    // });
+
+});
+
+document.addEventListener("pointermove", (e) => {
+
+    // Find the element under the pointer
+    const element = document.elementFromPoint(e.clientX, e.clientY);
+
+    // Find the nearest piano key
+    const key = element?.closest(".whiteKeys, .blackKeys");
+
+    // If the pointer isn't on a piano key
+    if (!key) {
+
+        if (currentPointerKey) {
+            deactivateKey(currentPointerKey);
+            currentPointerKey = null;
+        }
+
+        return;
+    }
+
+    // If we're still on the same key, do nothing
+    if (key === currentPointerKey) {
+        return;
+    }
+
+    // Stop the previous key
+    if (currentPointerKey) {
+        deactivateKey(currentPointerKey);
+    }
+
+    // Play the new key
+    activateKey(key);
+
+    // Remember it
+    currentPointerKey = key;
 
 });
 
@@ -228,7 +268,6 @@ document.addEventListener("keydown", async (event) => {
     // Prevent repeated firing while key is held
     if (pressedKeys[keyPressed]) return;
     pressedKeys[keyPressed] = true;
-    // await startAudio();
     const pianoKey = document.querySelector(`[data-key="${keyPressed}"]`);
     if (!pianoKey) return;
     activateKey(pianoKey);

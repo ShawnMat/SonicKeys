@@ -15,6 +15,7 @@ body{
 .piano{
     /* width: 90%; */
     height: 85%;
+    touch-action: none;
 }
 
 /* Black Keys Positioning */
@@ -138,6 +139,7 @@ body{
     margin: 0;
     color: #555;
 }
+
 
 
 /* For screens less than 600px */
