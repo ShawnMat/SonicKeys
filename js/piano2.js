@@ -130,13 +130,21 @@ function stopNote(note) {
 }
 
 function activateKey(key) {
+
+    if (key.classList.contains("active")) return;
+
     pressKey(key);
     playNote(key.dataset.note);
+
 }
 
 function deactivateKey(key) {
+
+    if (!key.classList.contains("active")) return;
+
     releaseKey(key);
     stopNote(key.dataset.note);
+
 }
 // --------------------
 // INITIALIZE
@@ -225,7 +233,7 @@ pianoKeys.forEach((key) => {
 
 });
 
-document.addEventListener("pointerup", () => {
+document.addEventListener("pointerup", (e) => {
 
     isPointerDown = false;
 
@@ -237,16 +245,16 @@ document.addEventListener("pointerup", () => {
 
 });
 
-document.addEventListener("pointercancel", () => {
+// document.addEventListener("pointercancel", () => {
 
-    isPointerDown = false;
+//     isPointerDown = false;
 
-    if (currentPointerKey) {
-        deactivateKey(currentPointerKey);
-        currentPointerKey = null;   
-    }
+//     if (currentPointerKey) {
+//         deactivateKey(currentPointerKey);
+//         currentPointerKey = null;   
+//     }
 
-});
+// });
 
 keyboard.addEventListener("pointermove", (e) => {
     if (!isPointerDown) return;
@@ -307,7 +315,7 @@ document.addEventListener("keydown", async (event) => {
 });
 
 document.addEventListener("keyup", async (event) => {
-    await startAudio();
+    // await startAudio();
     const keyPressed = event.key.toLowerCase();
     pressedKeys[keyPressed] = false;
     const pianoKey = document.querySelector(`[data-key="${keyPressed}"]`);
