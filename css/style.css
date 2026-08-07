@@ -96,10 +96,34 @@ body{
     user-select: none;
 }
 
+/* .volumeSlider{
+
+    width:  clamp(70px, 10vw, 110px);
+}
+
+.octaves{
+    width:  clamp(70px, 10vw, 110px);
+} */
+
 .pianoNotes{
     min-width: 90px ;
     height: auto;
+    max-height: 90px;
     padding: 3px;
+}
+
+
+/* For screens less than 600px */
+@media(max-width:600px){
+    .pianoControls{
+        display: block !important;
+    }
+    .octaves{
+        width: 80px;
+    }
+    .pianoNotes{
+        width: 80px;
+    }
 }
 
 
