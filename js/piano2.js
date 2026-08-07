@@ -4,6 +4,7 @@
 
 let currentOctave = 4;
 let currentPointerKey = null;
+let isPointerDown = false;
 let audioStarted = false;
 
 const activeNotes = new Set();
@@ -196,14 +197,15 @@ pianoKeys.forEach((key) => {
         e.preventDefault();
 
         await startAudio();
-
+        isPointerDown = true;
         activateKey(key);
         currentPointerKey = key;
-
+        
     });
-
+    
     key.addEventListener("pointerup", () => {
-
+        
+        isPointerDown = false;
         deactivateKey(key);
         currentPointerKey = null;
 
@@ -218,7 +220,7 @@ pianoKeys.forEach((key) => {
 });
 
 document.addEventListener("pointermove", (e) => {
-
+    if (!isPointerDown) return;
     // Find the element under the pointer
     const element = document.elementFromPoint(e.clientX, e.clientY);
 
