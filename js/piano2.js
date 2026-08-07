@@ -230,6 +230,7 @@ document.addEventListener("pointerup", () => {
     isPointerDown = false;
 
     if (currentPointerKey) {
+        currentPointerKey.releasePointerCapture(e.pointerId);
         deactivateKey(currentPointerKey);
         currentPointerKey = null;
     }
@@ -242,7 +243,7 @@ document.addEventListener("pointercancel", () => {
 
     if (currentPointerKey) {
         deactivateKey(currentPointerKey);
-        currentPointerKey = null;
+        currentPointerKey = null;   
     }
 
 });

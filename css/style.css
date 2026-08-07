@@ -140,6 +140,12 @@ body{
     color: #555;
 }
 
+.keyLabel {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    pointer-events: none;
+}
 
 
 /* For screens less than 600px */
