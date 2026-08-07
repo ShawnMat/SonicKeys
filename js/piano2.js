@@ -125,6 +125,16 @@ function stopNote(note) {
 
     synth.triggerRelease(note);
 }
+
+function activateKey(key) {
+    pressKey(key);
+    playNote(key.dataset.note);
+}
+
+function deactivateKey(key) {
+    releaseKey(key);
+    stopNote(key.dataset.note);
+}
 // --------------------
 // INITIALIZE
 // --------------------
@@ -201,15 +211,15 @@ pianoKeys.forEach((key) => {
         deactivateKey(key);
 
     });
-    
-});
-
-document.addEventListener("mouseup", () => {
-    pianoKeys.forEach((key) => {
-        releaseKey(key);
-    });
 
 });
+
+// document.addEventListener("mouseup", () => {
+//     pianoKeys.forEach((key) => {
+//         releaseKey(key);
+//     });
+
+// });
 
 
 document.addEventListener("keydown", async (event) => {
@@ -218,11 +228,10 @@ document.addEventListener("keydown", async (event) => {
     // Prevent repeated firing while key is held
     if (pressedKeys[keyPressed]) return;
     pressedKeys[keyPressed] = true;
-    await startAudio();
+    // await startAudio();
     const pianoKey = document.querySelector(`[data-key="${keyPressed}"]`);
     if (!pianoKey) return;
-    pressKey(pianoKey);
-    playNote(pianoKey.dataset.note);
+    activateKey(pianoKey);
     
 
 });
@@ -233,6 +242,5 @@ document.addEventListener("keyup", async (event) => {
     pressedKeys[keyPressed] = false;
     const pianoKey = document.querySelector(`[data-key="${keyPressed}"]`);
     if (!pianoKey) return;
-    releaseKey(pianoKey);
-    stopNote(pianoKey.dataset.note);
+    deactivateKey(pianoKey);
 });
