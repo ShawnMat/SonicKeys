@@ -236,6 +236,16 @@ document.addEventListener("pointerup", () => {
 
 });
 
+document.addEventListener("pointercancel", () => {
+
+    isPointerDown = false;
+
+    if (currentPointerKey) {
+        deactivateKey(currentPointerKey);
+        currentPointerKey = null;
+    }
+
+});
 
 keyboard.addEventListener("pointermove", (e) => {
     if (!isPointerDown) return;
