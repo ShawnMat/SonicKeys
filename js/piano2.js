@@ -11,6 +11,7 @@ const activeNotes = new Set();
 const pressedKeys = {};
 
 // DOM Elements
+const keyboard = document.querySelector(".piano");
 const beforeOctave = document.getElementById("beforeOctave");
 const afterOctave = document.getElementById("afterOctave");
 const currentOctaveText = document.getElementById("currentOctave");
@@ -197,19 +198,24 @@ pianoKeys.forEach((key) => {
         e.preventDefault();
 
         await startAudio();
+
+        key.setPointerCapture(e.pointerId);
+
         isPointerDown = true;
+
         activateKey(key);
+
         currentPointerKey = key;
-        
-    });
-    
-    key.addEventListener("pointerup", () => {
-        
-        isPointerDown = false;
-        deactivateKey(key);
-        currentPointerKey = null;
 
     });
+    
+    // key.addEventListener("pointerup", () => {
+        
+    //     isPointerDown = false;
+    //     deactivateKey(key);
+    //     currentPointerKey = null;
+
+    // });
 
     // key.addEventListener("pointerleave", () => {
 
@@ -219,7 +225,19 @@ pianoKeys.forEach((key) => {
 
 });
 
-document.addEventListener("pointermove", (e) => {
+document.addEventListener("pointerup", () => {
+
+    isPointerDown = false;
+
+    if (currentPointerKey) {
+        deactivateKey(currentPointerKey);
+        currentPointerKey = null;
+    }
+
+});
+
+
+keyboard.addEventListener("pointermove", (e) => {
     if (!isPointerDown) return;
     // Find the element under the pointer
     const element = document.elementFromPoint(e.clientX, e.clientY);
