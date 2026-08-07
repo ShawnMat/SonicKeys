@@ -107,27 +107,22 @@ function stopNote(note) {
     }
 }
 
+function checkOrientation() {
+    const overlay = document.getElementById("rotateOverlay");
 
-// pianoKeys.forEach((key) => {
+    const isSmallScreen = window.innerWidth < 600;
+    const isPortrait = window.innerHeight > window.innerWidth;
 
-//     key.addEventListener("mousedown", async () => {
-//         await startAudio();
-//         pressKey(key);
-//         const note = key.dataset.note;
-//         playNote(note);
-//     });
+    if (isSmallScreen && isPortrait) {
+        overlay.style.display = "flex";
+    } else {
+        overlay.style.display = "none";
+    }
+}
 
-//     key.addEventListener("mouseup", () => {
-//         releaseKey(key);
-//         stopNote(key.dataset.note);
-//     });
-
-//     key.addEventListener("mouseleave", () => {
-//         releaseKey(key);
-//         stopNote(key.dataset.note);
-//     });
-
-// });
+window.addEventListener("load", checkOrientation);
+window.addEventListener("resize", checkOrientation);
+window.addEventListener("orientationchange", checkOrientation);
 
 pianoKeys.forEach((key) => {
     key.addEventListener("mousedown", async () => {
