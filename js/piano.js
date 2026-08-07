@@ -1,81 +1,91 @@
-
 let currentOctave = 4;
+let currentPointerKey = null;
+let isPointerDown = false;
+let audioStarted = false;
+
+const activeNotes = new Set();
+const pressedKeys = {};
+
+
+const keyboard = document.querySelector(".piano");
 const beforeOctave = document.getElementById("beforeOctave");
 const afterOctave = document.getElementById("afterOctave");
 const currentOctaveText = document.getElementById("currentOctave");
 const volumeSlider = document.getElementById("volumeSlider");
 const currentNote = document.getElementById("currentNote");
+const rotateOverlay = document.getElementById("rotateOverlay");
+const pianoKeys = document.querySelectorAll(".whiteKeys, .blackKeys");
 
-const activeNotes = new Set();
-currentOctaveText.textContent = `C${currentOctave}`;
 
 const noteNames = [
-    "C", "C#", "D", "D#", "E", "F",
-    "F#", "G", "G#", "A", "A#", "B",
-    "C", "C#", "D", "D#", "E", "F"
+    "C","C#","D","D#","E","F",
+    "F#","G","G#","A","A#","B",
+    "C","C#","D","D#","E","F"
 ];
 
-function updateOctave(status) {
-    if (status === "reduce" && currentOctave > 1) {
-        currentOctave--;
-    }
-    else if (status === "increase" && currentOctave < 7) {
-        currentOctave++;
-    }
-    currentOctaveText.textContent = `C${currentOctave}`;
-    let octave = currentOctave;
-    pianoKeys.forEach((key, index) => {
-        if (index === 12) {
-            octave++;
-        }
-        key.dataset.note = `${noteNames[index]}${octave}`;
-    });
-}
-// const synth = new Tone.PolySynth(Tone.Synth).toDestination();
-const synth = new Tone.PolySynth(Tone.Synth, {
-    oscillator: {
-        type: "sine"
+
+const synth = new Tone.PolySynth(Tone.Synth,{
+    oscillator:{
+        type:"sine"
     },
-    envelope: {
-        attack: 0.01,
-        decay: 0.2,
-        sustain: 0.3,
-        release: 1.2
+    envelope:{
+        attack:0.01,
+        decay:0.2,
+        sustain:0.3,
+        release:1.2
     }
 }).toDestination();
 
-
-let audioStarted = false;
 synth.volume.value = -10;
-volumeSlider.addEventListener("input", () => {
-    synth.volume.value = Number(volumeSlider.value);
-});
-console.log(Tone.context.state);
 
-
-// Unlock audio on first user interaction
 async function startAudio() {
     try {
         if (!audioStarted) {
             await Tone.start();
             audioStarted = true;
             console.log("Tone.js Ready");
-            console.log(Tone.context.state);
+        }
+
+        if (Tone.context.state !== "running") {
+            await Tone.context.resume();
         }
     } catch (error) {
         console.error("Error starting Tone.js:", error);
     }
 }
 
-const pianoKeys = document.querySelectorAll(".whiteKeys, .blackKeys");
-updateOctave("init");
-pianoKeys.forEach(key => {
-    const label = key.querySelector(".keyLabel");
-    label.textContent = key.dataset.key.toUpperCase();
-});
-const pressedKeys = {};
+function checkOrientation() {
+    const isSmallScreen = window.innerWidth < 600;
+    const isPortrait = window.innerHeight > window.innerWidth;
+
+    rotateOverlay.style.display =
+        isSmallScreen && isPortrait ? "flex" : "none";
+}
 
 
+function updateOctave(status) {
+
+    if (status === "reduce" && currentOctave > 1) {
+        currentOctave--;
+    }
+
+    if (status === "increase" && currentOctave < 7) {
+        currentOctave++;
+    }
+
+    currentOctaveText.textContent = `C${currentOctave}`;
+
+    let octave = currentOctave;
+
+    pianoKeys.forEach((key, index) => {
+
+        if (index === 12) {
+            octave++;
+        }
+
+        key.dataset.note = `${noteNames[index]}${octave}`;
+    });
+}
 
 function pressKey(key) {
     key.classList.add("active");
@@ -86,106 +96,137 @@ function releaseKey(key) {
 }
 
 function playNote(note) {
-    try {
-        console.log("Playing:", note);
-        activeNotes.add(note);
-        currentNote.textContent = [...activeNotes].join("  ");
-        synth.triggerAttack(note);
-    } catch (error) {
-        console.error("Error playing note:", error);
-    }
+
+    activeNotes.add(note);
+
+    currentNote.textContent =
+        [...activeNotes].join("  ");
+
+    synth.triggerAttack(note);
 }
 
 function stopNote(note) {
-    try {
-        console.log("Stopping:", note);
-        activeNotes.delete(note);
-        currentNote.textContent = activeNotes.size ? [...activeNotes].join("  ") : "--";
-        synth.triggerRelease(note);
-    } catch (error) {
-        console.error("Error stopping note:", error);
-    }
+
+    activeNotes.delete(note);
+
+    currentNote.textContent =
+        activeNotes.size
+            ? [...activeNotes].join("  ")
+            : "--";
+
+    synth.triggerRelease(note);
 }
 
-function checkOrientation() {
-    const overlay = document.getElementById("rotateOverlay");
+function activateKey(key) {
 
-    const isSmallScreen = window.innerWidth < 600;
-    const isPortrait = window.innerHeight > window.innerWidth;
+    if (key.classList.contains("active")) return;
 
-    if (isSmallScreen && isPortrait) {
-        overlay.style.display = "flex";
-    } else {
-        overlay.style.display = "none";
-    }
+    pressKey(key);
+    playNote(key.dataset.note);
+
 }
 
-window.addEventListener("load", checkOrientation);
-window.addEventListener("resize", checkOrientation);
-window.addEventListener("orientationchange", checkOrientation);
+function deactivateKey(key) {
+
+    if (!key.classList.contains("active")) return;
+
+    releaseKey(key);
+    stopNote(key.dataset.note);
+
+}
+
+
+updateOctave("init");
+
+currentOctaveText.textContent = `C${currentOctave}`;
+
+pianoKeys.forEach(key=>{
+    key.querySelector(".keyLabel").textContent =
+        key.dataset.key.toUpperCase();
+});
+
+checkOrientation();
+
+window.addEventListener("load",checkOrientation);
+window.addEventListener("resize",checkOrientation);
+window.addEventListener("orientationchange",checkOrientation);
+
+volumeSlider.addEventListener("input",()=>{
+    synth.volume.value = Number(volumeSlider.value);
+});
+
+beforeOctave.addEventListener("click",()=>{
+    updateOctave("reduce");
+});
+
+afterOctave.addEventListener("click",()=>{
+    updateOctave("increase");
+});
+
 
 pianoKeys.forEach((key) => {
-    key.addEventListener("mousedown", async () => {
+    key.addEventListener("pointerdown", async (e) => {
+        e.preventDefault();
         await startAudio();
-        // Ensure Tone context is running before playing
-        if (Tone.context.state !== 'running') {
-            await Tone.context.resume();
+        key.setPointerCapture(e.pointerId);
+        isPointerDown = true;
+        activateKey(key);
+        currentPointerKey = key;
+
+    });
+});
+
+document.addEventListener("pointerup", (e) => {
+    isPointerDown = false;
+    if (currentPointerKey) {
+        currentPointerKey.releasePointerCapture(e.pointerId);
+        deactivateKey(currentPointerKey);
+        currentPointerKey = null;
+    }
+
+});
+
+
+keyboard.addEventListener("pointermove", (e) => {
+    if (!isPointerDown) return;
+    const element = document.elementFromPoint(e.clientX, e.clientY);
+    const key = element?.closest(".whiteKeys, .blackKeys");
+    if (!key) {
+        if (currentPointerKey) {
+            deactivateKey(currentPointerKey);
+            currentPointerKey = null;
         }
-        pressKey(key);
-        playNote(key.dataset.note);
-    });
+        return;
+    }
 
-    key.addEventListener("mouseup", () => {
-        releaseKey(key);
-        stopNote(key.dataset.note);
-    });
+    if (key === currentPointerKey) {
+        return;
+    }
 
-    key.addEventListener("mouseleave", () => {
-        releaseKey(key);
-        stopNote(key.dataset.note);
-    });
-});
-
-
-document.addEventListener("mouseup", () => {
-    pianoKeys.forEach((key) => {
-        releaseKey(key);
-    });
+    if (currentPointerKey) {
+        deactivateKey(currentPointerKey);
+    }
+    activateKey(key);
+    currentPointerKey = key;
 
 });
-
 
 document.addEventListener("keydown", async (event) => {
     await startAudio();
     const keyPressed = event.key.toLowerCase();
-    // Prevent repeated firing while key is held
     if (pressedKeys[keyPressed]) return;
     pressedKeys[keyPressed] = true;
-    await startAudio();
     const pianoKey = document.querySelector(`[data-key="${keyPressed}"]`);
     if (!pianoKey) return;
-    pressKey(pianoKey);
-    playNote(pianoKey.dataset.note);
+    activateKey(pianoKey);
     
 
 });
 
 document.addEventListener("keyup", async (event) => {
-    await startAudio();
     const keyPressed = event.key.toLowerCase();
     pressedKeys[keyPressed] = false;
     const pianoKey = document.querySelector(`[data-key="${keyPressed}"]`);
     if (!pianoKey) return;
-    releaseKey(pianoKey);
-    stopNote(pianoKey.dataset.note);
+    deactivateKey(pianoKey);
 });
-
-
-
-
-beforeOctave.addEventListener("click",()=>{
-    updateOctave("reduce");
-})
-afterOctave.addEventListener("click",()=>{
-    updateOctave("increase");
-})
