@@ -165,10 +165,11 @@ body {
     }
 
     .drumKit {
-        /* Ensures the kit shrinks to fit the screen height or width seamlessly */
-        width: min(92vw, 900px);
-        max-height: 85dvh; 
-        height: auto;
+        position: relative;
+
+        width: min(95vw, 1000px);
+        height: min(85vh, calc(95vw * 9 / 16));
+
         aspect-ratio: 16 / 9;
-    }
+        }
 }
