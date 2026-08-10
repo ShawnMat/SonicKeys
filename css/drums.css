@@ -37,6 +37,11 @@ body {
 .drumInstrument {
     position: absolute;
     height: auto;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    touch-action: none;
+    cursor: pointer;
 }
 
 
