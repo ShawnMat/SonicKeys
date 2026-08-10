@@ -157,16 +157,17 @@ body {
     .playArea {
         display: flex;
         width: 100vw;
-        height: 100vh;
-
+        height: 100dvh; /* Uses dynamic viewport height to avoid browser bar overflow */
         justify-content: center;
         align-items: center;
-
         overflow: hidden;
+        padding: 10px; /* Adds a safety margin around the edges */
     }
 
     .drumKit {
-        width: min(95vw, 1000px);
+        /* Ensures the kit shrinks to fit the screen height or width seamlessly */
+        width: min(92vw, 900px);
+        max-height: 85dvh; 
         height: auto;
         aspect-ratio: 16 / 9;
     }
