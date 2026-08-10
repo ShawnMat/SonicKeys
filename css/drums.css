@@ -1,33 +1,141 @@
-.drumKit{
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: whitesmoke;
+}
+
+.playArea {
+    width: 100vw;
     height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: end;
+
+    overflow: hidden;
 }
 
 
-.drumInstrument{
-    width: 400px;
-    height: auto;
+/* =========================
+   DRUM KIT CONTAINER
+========================= */
+
+.drumKit {
+    position: relative;
+
+    width: min(120vw, 1000px);
+    aspect-ratio: 16 / 9;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================
+   ALL DRUM IMAGES
+========================= */
+
+.drumInstrument {
     position: absolute;
+    height: auto;
 }
-#hiHat1{
-    bottom: 0px;
-    /* transform: scaleX(-1); */
+
+
+/* =========================
+   CRASH 1
+========================= */
+
+#crash1 {
+    width: 40%;
+    top: 4%;
+    left: 25%;
 }
-#crash1{
-    bottom: 40%;
-    left: 10%;
+
+
+/* =========================
+   RIDE CYMBAL
+========================= */
+
+#rideCymbal {
+    width: 35%;
+    top: 6%;
+    right: 18%;
 }
-#crash2{
-    bottom: 30%;
-    right: 10%;
+
+
+/* =========================
+   CRASH 2
+========================= */
+
+#crash2 {
+    width: 40%;
+    top: 25%;
+    right: 0%;
+}
+
+
+/* =========================
+   HI-HAT
+========================= */
+
+#hiHat {
+    width: 30%;
+    top: 33%;
+    left: 15%;
+}
+
+
+/* =========================
+   HIGH TOM
+========================= */
+
+#highTom {
+    width: 30%;
+    top: 38%;
+    left: 32%;
+}
+
+
+/* =========================
+   MIDDLE TOM
+========================= */
+
+#middleTom {
+    width: 33%;
+    top: 35%;
+    left: 46%;
+}
+
+
+/* =========================
+   SNARE
+========================= */
+
+#snareDrum {
+    width: 35%;
+    top: 59%;
+    left: 18%;
+}
+
+
+/* =========================
+   KICK / BASE DRUM
+========================= */
+
+#baseDrum {
+    width: 50%;
+    top: 57%;
+    left: 30%;
+}
+
+
+/* =========================
+   FLOOR TOM
+========================= */
+
+#floorTom {
+    width: 35%;
+    top: 59%;
+    right: 9%;
+
     transform: scaleX(-1);
 }
-#rideCymbal{
-    bottom: 55%;
-    right: 10%;
-}
-#snareDrum1{
-    top: 50%;
-    left: 40%;
-}
-
-
