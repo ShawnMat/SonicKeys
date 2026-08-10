@@ -14,48 +14,65 @@
 
 </head>
 <body>
-    <nav>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <img src="/assets/images/logos/SonicKeys Logo.png" id="logo">
-                    SonicKeys
+    <nav class="navbar navbar-expand-lg position-sticky top-0 bg-white z-3">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand fw-bold">
+                <img src="/assets/images/logos/SonicKeys Logo.png" id="logo">
+                SonicKeys
+            </a>
+            <div class="navbar-nav position-absolute start-50 translate-middle-x d-flex flex-row gap-4">
+                <a href="#home" class="nav-link">
+                    Home
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                    </li>
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-                </div>
+                <a href="#about" class="nav-link">
+                    About
+                </a>
+                <a href="#instruments" class="nav-link">
+                    Instruments
+                </a>
             </div>
-        </nav>
+            <a href="#instruments" class="btn btn-dark rounded-pill px-4 ms-auto">
+                Get Started
+            </a>
+        </div>
     </nav>
 
+    <section id="heroSection" class="position-relative">
+        <img src="/assets/images/logos/SonicKeys Logo.png" id="heroBGImage" class="position-absolute">
+        <p class="heroTitle">PLAY. CREATE.<br> MAKE SOUND</p>
+        <p class="heroContent p-2">A browser-based musical playground where you can play instruments, <br>experiment with sounds, and create your own music.</p>
+        <button class="CTA px-4 py-2 rounded-pill">
+            Explore Instruments
+        </button>
+    </section>
+    
+    <section id="about" class="mt-5">
+        <div class="container">
+            <p class="aboutTitle">
+                About SonicKeys
+            </p>
+            <div class="row justify-content-center">
+                <div class="col-10 col-lg-6"><img src="/assets/images/background/About.png" id="aboutImage"></div>
+                <div class="col-10 col-lg-6">
+                    <p class="aboutContents">
+                        SonicKeys is a browser-based music playground designed to make playing instruments simple, interactive, and accessible.
+                        Whether you're using a keyboard, mouse, or touchscreen, SonicKeys lets you jump straight into playing without complicated setup or additional software.
+                        Start with the Piano and Drums, experiment with different sounds, and create your own rhythm. More instruments and features are planned for the future.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="instruments">
+        <div class="container">
+            <p class="instrumentsTitle">
+                Explore Instruments
+            </p>
+        </div>
+
+    </section>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
         <!-- Bootstrap JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
