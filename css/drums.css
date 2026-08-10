@@ -149,3 +149,25 @@ body {
         visibility: hidden;
     }
 }
+@media (orientation: landscape) {
+    #rotateOverlay {
+        display: none;
+    }
+
+    .playArea {
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+
+        justify-content: center;
+        align-items: center;
+
+        overflow: hidden;
+    }
+
+    .drumKit {
+        width: min(95vw, 1000px);
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+}
