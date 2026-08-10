@@ -3,80 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SonicKeys</title>
+    <title>SonicKeys - Homepage</title>
 
     <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icon CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <!-- Font awesome CDN -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <!-- Custom Css Styles -->
-    <link rel="stylesheet" href="/css/piano.css">
+    <link rel="stylesheet" href="/css/style.css">
+
 </head>
 <body>
-    <section class="playArea">
-        <div class="pianoControls ms-2 d-flex justify-content-around rounded-3 p-2 ">
-            <div class="volumeSlider d-flex align-items-center gap-3">
-                <i class="bi bi-volume-up-fill text-white"></i>
-                <input type="range" id="volumeSlider" min="-40" max="0" value="-10" step="1" >
+    <nav class="navbar navbar-expand-lg position-sticky top-0 bg-white z-3">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand fw-bold">
+                <img src="/assets/images/logos/SonicKeys Logo.png" id="logo">
+                SonicKeys
+            </a>
+            
+            <!-- Hamburger -->
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false"  aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars fs-4"></i>
+            </button>
+                
+                <!-- Navigation -->
+                <div class="collapse navbar-collapse ps-5 ms-3" id="navbarMenu">
+                    <div class="navbar-nav mx-auto d-flex flex-lg-row gap-lg-4">
+                        <a href="#" class="nav-link">
+                            Home
+                        </a>
+                        
+                        <a href="#about" class="nav-link">
+                            About
+                        </a>
+                        
+                        <a href="#instruments" class="nav-link">
+                            Instruments
+                        </a>
+                    </div>
+                    
+                    <!-- Get Started -->
+                    <a href="#instruments" class="btn btn-dark rounded-pill px-4">
+                        Get Started
+                    </a>
+                </div>
+                
             </div>
-            <div class="octaves mt-2 p-2 text-center bg-white rounded-2">
-                <i class="bi bi-dash p-0 btn" id="beforeOctave"></i>
-                <span id="currentOctave"></span>
-                <i class="bi bi-plus p-0 btn" id="afterOctave"></i>
+        </nav>
+        
+        <section id="heroSection" class="position-relative">
+            <img src="/assets/images/logos/SonicKeys Logo.png" id="heroBGImage" class="position-absolute">
+            <p class="heroTitle">PLAY. CREATE.<br> MAKE SOUND</p>
+            <p class="heroContent p-2">A browser-based musical playground where you can play instruments, <br>experiment with sounds, and create your own music.</p>
+            <a href="#instruments" class="btn btn-dark px-4 py-2 z-3 rounded-pill">
+                Explore Instruments
+            </a>
+        </section>
+        
+        <section id="about" class="mt-5">
+            <div class="container">
+                <p class="aboutTitle">
+                    About SonicKeys
+                </p>
+                <div class="row justify-content-center">
+                    <div class="col-10 col-lg-6"><img src="/assets/images/background/musicalStudio.png" id="aboutImage"></div>
+                    <div class="col-10 col-lg-6">
+                        <p class="aboutContents mt-4">
+                            SonicKeys is a browser-based music playground designed to make playing instruments simple, interactive, and accessible.
+                            Whether you're using a keyboard, mouse, or touchscreen, SonicKeys lets you jump straight into playing without complicated setup or additional software.
+                            Start with the Piano and Drums, experiment with different sounds, and create your own rhythm. More instruments and features are planned for the future.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="pianoNotes mt-2 bg-white rounded-2 d-flex justify-content-center align-items-center">
-                <span class="fs-3" id="currentNote"></span>
+        </section>
+        
+        <section id="instruments" class="mt-5">
+            <div class="container">
+                <p class="instrumentsTitle">
+                    Explore Instruments
+                </p>
+                <div class="row g-4 gap-3 justify-content-center ">
+                    <div class="col-3 cards">
+                        <img src="/assets/images/background/pianoCard.png" id="pianoImg">
+                        <div class="keyboardTitle">
+                            <img src="/assets/images/icons/pianoIcon.png" id="pianoIcon">
+                            <p class="m-0 keyboardText">Keyboard</p>
+                        </div>
+                        <div class="keyboardContent mt-1">
+                            <p class="">Play melodies, chords, and experiment with different octaves.   </p>
+                        </div>
+                        <button class="w-75 ms-3 rounded-pill py-2" id="playPiano">
+                            Play Piano
+                        </button>
+                    </div>
+                    <div class="col-3 cards">
+                        <img src="/assets/images/background/drumCard.png" id="drumImg">
+                        <div class="drumTitle">
+                            <img src="/assets/images/icons/drum.png" id="drumIcon">
+                            <p class="m-0 drumText">Drums</p>
+                        </div>
+                        <div class="keyboardContent mt-2">
+                            <p class="">Build rhythms and beats using a virtual drum kit according to you.</p>
+                        </div>
+                        <button class="w-75 ms-5 rounded-pill py-2" id="playDrums">
+                            Play Drums
+                        </button>
+                    </div>
+                    <div class="col-3 cards">
+                        <img src="/assets/images/background/synthesizer.png" id="drumImg">
+                        <div class="drumTitle">
+                            <img src="/assets/images/icons/synthesizer (1).png" id="drumIcon">
+                            <p class="m-0 drumText">Synthesizer</p>
+                        </div>
+                        <div class="keyboardContent mt-2">
+                            <p class="">Create soulful melodies with the rich and expressive sound of the violin.</p>
+                        </div>
+                        <button class="w-75 ms-5 rounded-pill py-2">
+                            Coming soon
+                        </button>
+                    </div>
+                    <div class="col-3 cards">
+                        <img src="/assets/images/background/guitar.png" id="drumImg">
+                        <div class="drumTitle">
+                            <img src="/assets/images/icons/guitar (1).png" id="drumIcon">
+                            <p class="m-0 drumText">Guitar</p>
+                        </div>
+                        <div class="keyboardContent mt-2">
+                            <p class="">Strum your way through melodies and chords with the timeless sound of the guitar.</p>
+                        </div>
+                        <button class="w-75 ms-5 rounded-pill py-2">
+                            Coming soon
+                        </button>
+                    </div>
+                    <div class="col-3 cards" >
+                        <img src="/assets/images/background/Violin.png" id="drumImg">
+                        <div class="drumTitle">
+                            <img src="/assets/images/icons/violin (1).png" id="drumIcon">
+                            <p class="m-0 drumText">Violin</p>
+                        </div>
+                        <div class="keyboardContent mt-2">
+                            <p class="">Create beautiful melodies with the timeless sound of the violin.</p>
+                        </div>
+                        <button class="w-75 ms-5 rounded-pill py-2">
+                            Coming soon
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <button class="p-2"><a href="/drums.html">Drums</a></button>
-        <div class="piano d-flex justify-content-center align-items-end">
-            <div class="whiteKeysContainer d-flex gap-1 position-relative px-3">
-                <div class="whiteKeys" id="wKey1" data-note="C4" data-key="a" tabindex="0"><span class="keyLabel"></span></div>
-                <div class="blackKeys" id="bKey1" data-note="C#4" data-key="w" tabindex="0"><span class="keyLabel"></span></div>
-
-                <div class="whiteKeys" id="wKey2" data-note="D4" data-key="s" tabindex="0"><span class="keyLabel"></span></div>
-                <div class="blackKeys" id="bKey2" data-note="D#4" data-key="e" tabindex="0"><span class="keyLabel"></span></div>
-
-                <div class="whiteKeys" id="wKey3" data-note="E4" data-key="d" tabindex="0"><span class="keyLabel"></span></div>
-
-                <div class="whiteKeys" id="wKey4" data-note="F4" data-key="f" tabindex="0"><span class="keyLabel"></span></div>
-                <div class="blackKeys" id="bKey3" data-note="F#4" data-key="t" tabindex="0"><span class="keyLabel"></span></div>
-
-                <div class="whiteKeys" id="wKey5" data-note="G4" data-key="g" tabindex="0"><span class="keyLabel"></span></div>
-                <div class="blackKeys" id="bKey4" data-note="G#4" data-key="y" tabindex="0"><span class="keyLabel"></span></div>
-
-                <div class="whiteKeys" id="wKey6" data-note="A4" data-key="h" tabindex="0"><span class="keyLabel"></span></div>
-                <div class="blackKeys" id="bKey5" data-note="A#4" data-key="u" tabindex="0"><span class="keyLabel"></span></div>
-
-                <div class="whiteKeys" id="wKey7" data-note="B4" data-key="j" tabindex="0"><span class="keyLabel"></span></div>
-
-                <div class="whiteKeys" id="wKey8" data-note="C5" data-key="k" tabindex="0"><span class="keyLabel"></span></div>
-                <div class="blackKeys" id="bKey6" data-note="C#5" data-key="o" tabindex="0"><span class="keyLabel"></span></div>
-                <div class="whiteKeys" id="wKey9" data-note="D5" data-key="l" tabindex="0"><span class="keyLabel"></span></div>
-                <div class="blackKeys" id="bKey7" data-note="D#5" data-key="p" tabindex="0"><span class="keyLabel"></span></div>
-                <div class="whiteKeys" id="wKey10" data-note="E5" data-key=";" tabindex="0"><span class="keyLabel"></span></div>
-                <div class="whiteKeys" id="wKey11" data-note="F5" data-key="'" tabindex="0"><span class="keyLabel"></span></div>               
+            
+        </section>
+        
+        <footer >
+            <div class="container">
+                <div class="row justify-content-center text-center">
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <img src="/assets/images/logos/SonicKeys Logo.png" id="logo">
+                        <p class="fw-bolder fs-4">SonicKeys </p>
+                        <p class="fs-5">Play. Create. <br>Make Sound.</p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="navigation">
+                            <p class="navHeading">Navigation</p>
+                            <ul class="list-unstyled">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#instruments">Instruments</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="contact">
+                            <p class="contactHeading">Contact</p>
+                            <ul class="list-unstyled">
+                                <li><span><i class="bi bi-envelope-fill"></i> sonickeys@gmail.com</span></li>
+                                <li><span><i class="bi bi-telephone-fill"></i> 7788996644</span></li>
+                                <li><span><i class="bi bi-geo-alt-fill"></i> ABC Street, Ramanathapuram,<br> Coimbatore, Tamil Nadu - 641045</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="media">
+                            <p class="mediaHeading">Social Media</p>
+                            <ul class="list-unstyled">
+                                <li><span><i class="bi bi-instagram"></i> @sonicKeys</span></li>
+                                <li><span><i class="bi bi-facebook"></i> @sonicKeys</span></li>
+                                <li><span><i class="bi bi-twitter-x"></i> @sonicKeys</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </footer>
+    
 
-    <div id="rotateOverlay">
-        <div class="rotateBox">
-            <i class="bi bi-phone-landscape fs-1"></i>
-            <h3>Rotate Your Device</h3>
-            <p>Change to landscape mode for a better musical experience.</p>
-        </div>
-    </div>
+        <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Custom JS scripts -->
+    <script src="/js/script.js"></script>
 </body>
-
-
-<!-- Bootstrap JS CDN -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- JQuery CDN -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<!-- Tone.js CDN -->
-<script src="js/tone.js"></script>
-<script src="https://unpkg.com/tone@15.1.22/build/Tone.js"></script>
-<!-- Custom JS scripts -->
-<script src="/js/piano.js"></script>
 </html>

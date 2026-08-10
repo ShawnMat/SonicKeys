@@ -6,11 +6,12 @@
 
 body{
     /* background-color: #0A0A0B; */
+    font-family: "Lora", serif;
 }
-
-nav{
-    /* background-color: #0A0A0B; */
-}
+/* .navbar{
+    background-color: #00000017;
+    z-index: 10;
+} */
 
 #heroBGImage{
     width: 70%;
@@ -33,9 +34,8 @@ nav{
     text-align: center;
 }
 #about{
-    height: 100vh;
-    display: flex;
-    align-items: center;
+    height: 100%;
+    padding-top: 100px;
 }
 .aboutTitle{
     font-size: clamp(15px, 25px ,30px);
@@ -48,22 +48,94 @@ nav{
     text-align: justify;
 }
 #aboutImage{
-     width:100%;
+    width:100%;
 }
 
 #instruments{
-    height: 100vh;
-    display: flex;
+    height: 100%;
+    padding-top: 100px;
+}
+.instrumentsTitle{
+    font-size: clamp(15px, 25px ,30px);
+    font-weight: bold;
+    
+}
+
+.keyboardTitle{
+    margin-top: 10px;
+    display:flex;
+    gap: 10px;
     align-items: center;
+    font-size: clamp(15px, 20px ,30px);
+}
+#pianoImg{
+    width: 100%;
+}
+
+#pianoIcon{
+    width: 50px;
+    height: auto;
+    background-color: white;
+}
+
+.drumTitle{
+    margin-top: 10px;
+    display:flex;
+    gap: 10px;
+    align-items: center;
+    font-size: clamp(15px, 20px ,30px);
+}
+#drumImg{
+    width: 100%
+}
+
+#drumIcon{
+    width: 40px;
+    height: auto;
+    background-color: white;
 }
 
 
+.cards{
+    /* background-color: #0A0A0B; */
+    padding: 5px;
+    /* color: white; */
+    width: 400px;
+    height: 400px;
+    text-align: center;
+}
 #logo {
     width: 60px;
     height: auto;
     border-radius: 50%;
     animation: rotateDisc 8s linear infinite;
 }
+li > a{
+    text-decoration: none;
+    color: black;
+}
+
+footer{
+    margin-top: 100px;
+    background-color: #00000017;
+    padding-top: 30px;
+}
+
+.navHeading{
+    font-weight: bolder;
+    font-size: larger;
+}
+.contactHeading{
+    font-weight: bolder;
+    font-size: larger;
+}
+.mediaHeading{
+    font-weight: bolder;
+    font-size: larger;
+}
+
+
+
 
 @keyframes rotateDisc {
     from {
