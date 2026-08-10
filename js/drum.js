@@ -554,3 +554,33 @@ document.addEventListener(
         once: true
     }
 );
+
+
+// ==============================
+// ORIENTATION CHECK
+// ==============================
+
+const rotateOverlay = document.getElementById("rotateOverlay");
+
+function checkOrientation() {
+
+    if (window.innerHeight > window.innerWidth) {
+
+        // Portrait
+        rotateOverlay.style.display = "flex";
+
+    } else {
+
+        // Landscape
+        rotateOverlay.style.display = "none";
+
+    }
+}
+
+
+// Check when page loads
+checkOrientation();
+
+
+// Check whenever screen size/orientation changes
+window.addEventListener("resize", checkOrientation);
