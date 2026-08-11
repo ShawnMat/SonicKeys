@@ -331,22 +331,22 @@ Object.values(drums).forEach((element) => {
     });
 });
 
-const rotateOverlay = document.getElementById("rotateOverlay");
-const playArea = document.querySelector(".playArea");
+// const rotateOverlay = document.getElementById("rotateOverlay");
+// const playArea = document.querySelector(".playArea");
 
-function checkOrientation() {
-    const isMobile = window.innerWidth <= 768;
-    const isPortrait = window.innerHeight > window.innerWidth;
+// function checkOrientation() {
+//     const isMobile = window.innerWidth <= 768;
+//     const isPortrait = window.innerHeight > window.innerWidth;
 
-    if (isMobile && isPortrait) {
-        rotateOverlay.style.display = "flex";
-        playArea.style.pointerEvents = "none";
-    } else {
-        rotateOverlay.style.display = "none";
-        playArea.style.pointerEvents = "auto";
-    }
-}
+//     if (isMobile && isPortrait) {
+//         rotateOverlay.style.display = "flex";
+//         playArea.style.pointerEvents = "none";
+//     } else {
+//         rotateOverlay.style.display = "none";
+//         playArea.style.pointerEvents = "auto";
+//     }
+// }
 
-checkOrientation();
+// checkOrientation();
 
-window.addEventListener("resize", checkOrientation);
+// window.addEventListener("resize", checkOrientation);
