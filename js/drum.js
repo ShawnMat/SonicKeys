@@ -185,7 +185,15 @@ function playRide() {
 
 async function hitDrum(drumName) {
     await startAudio();
+    const drumElement = drums[drumName];
 
+    if (drumElement) {
+        drumElement.closest(".card").classList.add("active");
+
+        setTimeout(() => {
+            drumElement.closest(".card").classList.remove("active");
+        }, 100);
+    }
     switch (drumName) {
         case "kick":
             playKick();
@@ -330,23 +338,3 @@ Object.values(drums).forEach((element) => {
         event.preventDefault();
     });
 });
-
-// const rotateOverlay = document.getElementById("rotateOverlay");
-// const playArea = document.querySelector(".playArea");
-
-// function checkOrientation() {
-//     const isMobile = window.innerWidth <= 768;
-//     const isPortrait = window.innerHeight > window.innerWidth;
-
-//     if (isMobile && isPortrait) {
-//         rotateOverlay.style.display = "flex";
-//         playArea.style.pointerEvents = "none";
-//     } else {
-//         rotateOverlay.style.display = "none";
-//         playArea.style.pointerEvents = "auto";
-//     }
-// }
-
-// checkOrientation();
-
-// window.addEventListener("resize", checkOrientation);
