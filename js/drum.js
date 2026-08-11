@@ -192,7 +192,7 @@ async function hitDrum(drumName) {
 
         setTimeout(() => {
             drumElement.closest(".card").classList.remove("active");
-        }, 100);
+        }, 200);
     }
     switch (drumName) {
         case "kick":
