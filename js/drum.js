@@ -1,4 +1,9 @@
 const drumVolume = new Tone.Volume(-8).toDestination();
+const volumeSlider = document.getElementById("volumeSlider");
+
+volumeSlider.addEventListener("input", () => {
+    drumVolume.volume.value = volumeSlider.value;
+});
 
 const kick = new Tone.MembraneSynth({
     pitchDecay: 0.05,
