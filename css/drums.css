@@ -10,11 +10,8 @@ body {
 .drumKit{
     height: 100%;
 }
-.cards{
-    height: 150px;
-}
-    
-/* #rotateOverlay{
+
+#rotateOverlay{
     position: fixed;
     inset: 0;
 
@@ -58,14 +55,19 @@ body {
 .rotateBox p {
     margin: 0;
     color: #555;
-} */
+}
 
 
 
 /* Cards */
 .cards{
     /* width: 200px; */
-    min-height: auto;
+    /* min-height: auto; */
     background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
     background-blend-mode: multiply,multiply;
+}
+.cards > span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
