@@ -55,10 +55,7 @@ body {
     font-weight: bold;
 }
 
-
-/* Rotate Overlay */
-
-#rotateOverlay {
+#rotateOverlay{
     position: fixed;
     inset: 0;
 
@@ -103,6 +100,8 @@ body {
     margin: 0;
     color: #555;
 }
+
+
 
 
 /* Tablet */
