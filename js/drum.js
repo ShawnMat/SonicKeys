@@ -1,4 +1,16 @@
-const drumVolume = new Tone.Volume(-8).toDestination();
+const reverb = new Tone.Reverb({
+    decay: 1.5,
+    wet: 0.2
+}).toDestination();
+
+const drumVolume = new Tone.Volume(-8).connect(reverb);
+
+const reverbSlider = document.getElementById("reverbSlider");
+
+reverbSlider.addEventListener("input", () => {
+    reverb.wet.value = Number(reverbSlider.value);
+});
+
 const volumeSlider = document.getElementById("volumeSlider");
 
 volumeSlider.addEventListener("input", () => {
@@ -120,6 +132,7 @@ async function startAudio() {
     }
 
     await Tone.start();
+    await reverb.generate();
 
     audioStarted = true;
 
